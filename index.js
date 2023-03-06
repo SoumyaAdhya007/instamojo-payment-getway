@@ -22,7 +22,10 @@ app.use(cors())
  */
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( bodyParser.json() );
-
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	next();
+  });
 app.use( '/api/bid/', payment );
 
 // We export the router so that the server.js file can pick it up
